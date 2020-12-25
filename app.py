@@ -2,6 +2,8 @@
 from flask import Flask,render_template,url_for,request
 import pickle
 import preprocessing
+import pdfreader as pd
+print(pd.extract())
 
 # load the model from disk
 clf = pickle.load(open('nb_clf.pkl', 'rb'))
