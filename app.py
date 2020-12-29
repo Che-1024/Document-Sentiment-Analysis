@@ -1,33 +1,66 @@
 # -*- coding: utf-8 -*-
-from flask import Flask,render_template,url_for,request
+from flask import Flask, render_template, url_for, request
 import pickle
 import preprocessing
 import pdfreader as pd
-print(pd.extract())
 
 # load the model from disk
 clf = pickle.load(open('nb_clf.pkl', 'rb'))
-cv=pickle.load(open('tfidf_model.pkl','rb'))
+cv = pickle.load(open('tfidf_model.pkl', 'rb'))
 app = Flask(__name__)
+
 
 @app.route('/')
 def home():
-	return render_template('home.html')
+    return render_template('home.html')
 
-@app.route('/predict',methods=['POST'])
+
+@app.route('/predict', methods=['POST'])
 def predict():
     if request.method == 'POST':
         message = request.form['message']
-        if(len(message)>2):
+        if(len(message) > 2):
             text = [message]
             data = preprocessing.text_Preprocessing(text)
             vect = cv.transform(data)
             my_prediction = clf.predict(vect)
         else:
-            my_prediction=3
-        
-    return render_template('home.html',prediction = my_prediction)
+            my_prediction = 3
+
+    return render_template('home.html', prediction=my_prediction)
+    #################################
+    #
+    #
+
+    #
+
+
+@app.route('/predict2', methods=['POST'])
+  #
+def predict2():
+    if request.method == 'POST':
+        message = pd.extract()
+        if(len(message) > 2):
+            text = [message]
+            data = preprocessing.text_Preprocessing(text)
+            vect = cv.transform(data)
+            my_prediction2 = clf.predict(vect)
+        else:
+            my_prediction2 = 3
+
+    return render_template('home.html', prediction=my_prediction2)
+        #
+        #
+        #
+        #
+        #
+    #
+    #
+    #
+    # ####################################################################################
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+    app.run(debug=True)
+
+# code for the upload page

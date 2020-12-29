@@ -4,4 +4,4 @@ def extract():
     contents = myfile.read()         # read the entire file to string
     myfile.close() 
     print(contents)                  # close the file
-extract()           # print string contents
+extract()           # print string contentsS

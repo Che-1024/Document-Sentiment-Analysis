@@ -33,17 +33,32 @@
 		<textarea placeholder="Enter your Text here...." name="message" rows="6" cols="50"></textarea>
 		<br/>
 
-		<input type="submit" class="btn-info" value="predict">
+		<input type="submit" class="btn btn-dark" value="predict">
 		
 		
 	</form>
+	<!--################################################################################-->
+	<form action="{{ url_for('predict')}}" method="POST">
+		
+	
+		<input type="file" id="actual-btn" value="predict2" hidden/>
+		
+		<form action="{{ url_for('predict2')}}" method="POST">
+			<input type="file" id="myFile" name="filename">
+			<input type="submit" value="predict2">
+		  </form>
+		
+		
+		
+	</form>
+	<!--################################################################################-->
 	<div class="my_prediction"
 	{% if prediction == 1%}
 	<h1 style="color:#008000;"><strong>Positive</strong></h1>
 	<span style='font-size:100px;'>&#128522;</span>
 
 	{% elif prediction == 0%}
-	<h1 style="color:#FF0000;"><strong>Negative</strong></h1>
+	<h1 style="color:#643636;"><strong>Negative</strong></h1>
 	<span style='font-size:100px;'>&#128545;</span>
 	
 	{% elif prediction == 2%}
