@@ -1,79 +1,83 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Opinion Mining</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Opinion Mining</title>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	
 
 	<title>Sentiment Analysis</title>
 	<!-- <link rel="stylesheet" type="text/css" href="../static/css/styles.css"> -->
 	<!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">-->
-</head>
 
-<body> 
+	</head>
 
+<body>
 
+<div class="scroll">
 	<header>
 		<div id="brandname">
-			   Machine Learning App with Flask
+			Machine Learning App with Flask
 		</div>
 
 	</header>
 
 	<div class="container">
-        <h4>Opinion Mining For Document Sentiment Analysis</h4>
-		<form action="{{ url_for('predict')}}" method="POST">
-		<p>Paste Text Here</p>
-		<!-- <input type="text" name="comment"/> -->
-		<textarea placeholder="Enter your Text here...." name="message" rows="6" cols="50"></textarea>
-		<br/>
+		<h6>Opinion Mining For Document Sentiment Analysis</h6>
+		
+			<form action="{{ url_for('predict')}}" method="POST">
+               <div class="row">
+				<h6>Upload Document</h6><br>
+				<input type="file">
+			   </div>
+				
+				<h6></ht6>Paste Text Here</h6>
+				<!-- <input type="text" name="comment"/> -->
+				<textarea placeholder="Enter your Text here...." name="message" rows="6" cols="50"></textarea>
+				<br />
 
-		<input type="submit" class="btn btn-dark" value="predict">
-		
-		
-	</form>
-	<!--################################################################################-->
-	<form action="{{ url_for('predict')}}" method="POST">
-		
-	
-		<input type="file" id="actual-btn" value="predict2" hidden/>
-		
-		<form action="{{ url_for('predict2')}}" method="POST">
-			<input type="file" id="myFile" name="filename">
-			<input type="submit" value="predict2">
-		  </form>
-		
-		
-		
-	</form>
-	<!--################################################################################-->
-	<div class="my_prediction"
-	{% if prediction == 1%}
-	<h1 style="color:#008000;"><strong>Positive</strong></h1>
-	<span style='font-size:100px;'>&#128522;</span>
+				<input type="submit" class="btn btn-dark" value="predict">
 
-	{% elif prediction == 0%}
-	<h1 style="color:#643636;"><strong>Negative</strong></h1>
-	<span style='font-size:100px;'>&#128545;</span>
+				
+			</form>
+			 
+			
 	
-	{% elif prediction == 2%}
-	<h2 style="color:white;"><strong>Neutral</strong></h2>
-	<span style='font-size:100px;'>&#128528;</span>
-	
-	{% elif prediction == 3%}
-        <h2 style="color:red;"><strong>Enter text atleast greater than 3 and Try Again..!!!</strong></h2>
-	
-	{% endif %}
+
+		<div class="my_prediction" {% if prediction==1%} <h1 style="color:#30c930;"><strong>Positive</strong></h1>
+			<span style='font-size:100px;'>&#128522;</span>
+
+			{% elif prediction == 0%}
+			<h1 style="color:#643636;"><strong>Negative</strong></h1>
+			<span style='font-size:100px;'>&#128545;</span>
+
+			{% elif prediction == 2%}
+			<h2 style="color:white;"><strong>Neutral</strong></h2>
+			<span style='font-size:100px;'>&#128528;</span>
+
+			{% elif prediction == 3%}
+			<h2 style="color:red;"><strong>Enter text atleast greater than 3 and Try Again..!!!</strong></h2>
+
+			{% endif %}
+		</div>
+
 	</div>
+
+
+
+
+
 </div>
-
-	
-	
-
 </body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="{{
+		url_for('static', filename='script.js') }}"></script>
+
 </html>

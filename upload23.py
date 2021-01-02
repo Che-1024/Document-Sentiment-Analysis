@@ -1,9 +1,13 @@
-#uploading the document
-from flask import Flask
-
-UPLOAD_FOLDER = 'D:/uploads'
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
-app.secret_key = "secret key"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+@app.route('/')
+def my_form():
+    return render_template('upload.html')
+
+@app.route('/', methods=['POST'])
+def my_form_post():
+    text = request.form['text']
+    processed_text = text.upper()
+    return processed_text

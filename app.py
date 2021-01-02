@@ -2,7 +2,7 @@
 from flask import Flask, render_template, url_for, request
 import pickle
 import preprocessing
-import pdfreader as pd
+# import pdfreader as pd
 
 # load the model from disk
 clf = pickle.load(open('nb_clf.pkl', 'rb'))
@@ -28,38 +28,7 @@ def predict():
             my_prediction = 3
 
     return render_template('home.html', prediction=my_prediction)
-    #################################
-    #
-    #
-
-    #
-
-
-@app.route('/predict2', methods=['POST'])
-  #
-def predict2():
-    if request.method == 'POST':
-        message = pd.extract()
-        if(len(message) > 2):
-            text = [message]
-            data = preprocessing.text_Preprocessing(text)
-            vect = cv.transform(data)
-            my_prediction2 = clf.predict(vect)
-        else:
-            my_prediction2 = 3
-
-    return render_template('home.html', prediction=my_prediction2)
-        #
-        #
-        #
-        #
-        #
-    #
-    #
-    #
-    # ####################################################################################
-
-
+ 
 if __name__ == '__main__':
     app.run(debug=True)
 
